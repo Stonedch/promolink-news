@@ -10,6 +10,7 @@ use App\Orchid\Screens\Examples\ExampleLayoutsScreen;
 use App\Orchid\Screens\Examples\ExampleScreen;
 use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
 use App\Orchid\Screens\PlatformScreen;
+use App\Orchid\Screens\Post\PostListScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
 use App\Orchid\Screens\User\UserEditScreen;
@@ -96,4 +97,9 @@ Route::screen('example-editors', ExampleTextEditorsScreen::class)->name('platfor
 Route::screen('example-cards', ExampleCardsScreen::class)->name('platform.example.cards');
 Route::screen('example-advanced', ExampleFieldsAdvancedScreen::class)->name('platform.example.advanced');
 
-//Route::screen('idea', Idea::class, 'platform.screens.idea');
+// Platform > Posts
+Route::screen('posts', PostListScreen::class)
+    ->name('platform.post.list')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push('Post List'));

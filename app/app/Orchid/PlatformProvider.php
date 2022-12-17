@@ -28,6 +28,11 @@ class PlatformProvider extends OrchidServiceProvider
     public function registerMainMenu(): array
     {
         return [
+            Menu::make('Posts')
+                ->title('Posts')
+                ->icon('feed')
+                ->route('platform.post.list'),
+            /*
             Menu::make('Example screen')
                 ->icon('monitor')
                 ->route('platform.example')
@@ -78,6 +83,7 @@ class PlatformProvider extends OrchidServiceProvider
                 ->url('https://github.com/orchidsoftware/platform/blob/master/CHANGELOG.md')
                 ->target('_blank')
                 ->badge(fn () => Dashboard::version(), Color::DARK()),
+            */
 
             Menu::make(__('Users'))
                 ->icon('user')
