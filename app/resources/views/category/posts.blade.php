@@ -1,23 +1,15 @@
 @extends('layouts.layout')
 
 @section('content')
-    <section class="category-list container">
-        @foreach ($categories as $category)
-            @if (count($category->posts()->get()))
-                <a href="{{ route('category.show', $category->id) }}">{{ $category->name }}</a>
-            @endif
-        @endforeach
-    </section>
-
     <section class="container">
 
-        <form class="search" action="{{ route('news.index') }}" method="GET">
+        <form class="search" method="GET">
             <input type="text" name="search" placeholder="{{ __('Search') }}" value="{{ $search }}" />
             <button type="submit">{{ __('Search') }}</button>
         </form>
 
         <div class="item">
-            <h2>{{ __('Last News') }}</h2>
+            <h2>{{ $category->name }}</h2>
             <div class="post-list">
                 @if (empty($posts->items()))
                     <h2>{{ __('Empty') }}</h2>

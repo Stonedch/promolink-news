@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PostController::class, 'index']);
 
 Route::resource('news', PostController::class);
+
+Route::resource('category', CategoryController::class);

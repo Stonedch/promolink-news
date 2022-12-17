@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -16,6 +17,7 @@ class PostController extends Controller
     public function index(Request $request)
     {
         $paginate = 5;
+        $categories = Category::all();
         $search = $request->input('search');
 
         if ($search) {
@@ -33,6 +35,7 @@ class PostController extends Controller
         }
 
         return view('post.list', [
+            'categories' => $categories,
             'posts' => $posts,
             'search' => $search,
         ]);

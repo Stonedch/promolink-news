@@ -41,6 +41,9 @@ class Category extends Model
 
     public function posts()
     {
-        return $this->hasMany(Post::class)->where('is_publicated', true)->where('is_draft', false);
+        return $this->hasMany(Post::class)
+            ->where('is_draft', false)
+            ->where('is_publicated', true)
+            ->where('publicated_at', '<=', now());
     }
 }

@@ -233,3 +233,22 @@ form button {
 form button:hover {
     color: #fff;
 }
+
+.category-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: dotted rgba(46, 46, 55, 1);
+}
+
+.category-list a {
+    color: #b2b6b9;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.category-list a:hover {
+    color: #fff;
+}
