@@ -14,7 +14,10 @@ class Post extends Model
     protected $fillable = [
         'title',
         'body',
+        'user_id',
         'is_draft',
+        'is_publicated',
+        'publicated_at'
     ];
 
     protected $hidden = [

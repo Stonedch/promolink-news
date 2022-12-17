@@ -6,6 +6,8 @@ namespace App\Orchid\Layouts\Post;
 
 use App\Models\Post;
 use App\Models\User;
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
@@ -84,6 +86,24 @@ class PostListLayout extends Table
                     return date('d.m.Y H:i', strtotime($post->updated_at->toString()));
                 })
                 ->sort(),
+
+            TD::make(__('Actions'))
+                ->align(TD::ALIGN_CENTER)
+                ->width('100px')
+                ->render(fn (Post $post) => DropDown::make()
+                    ->icon('options-vertical')
+                    ->list([
+                        Link::make(__('Edit'))
+                            ->route('platform.post.edit', $post->id)
+                            ->icon('pencil'),
+
+                        Button::make(__('Delete'))
+                            ->icon('trash')
+                            ->confirm(__('Are you sure?'))
+                            ->method('remove', [
+                                'id' => $post->id,
+                            ]),
+                    ])),
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Orchid\Layouts\Post\PostEditLayout;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
 use App\Orchid\Screens\Examples\ExampleChartsScreen;
 use App\Orchid\Screens\Examples\ExampleFieldsAdvancedScreen;
@@ -10,6 +11,7 @@ use App\Orchid\Screens\Examples\ExampleLayoutsScreen;
 use App\Orchid\Screens\Examples\ExampleScreen;
 use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
 use App\Orchid\Screens\PlatformScreen;
+use App\Orchid\Screens\Post\PostEditScreen;
 use App\Orchid\Screens\Post\PostListScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
@@ -103,3 +105,17 @@ Route::screen('posts', PostListScreen::class)
     ->breadcrumbs(fn (Trail $trail) => $trail
         ->parent('platform.index')
         ->push('Post List'));
+
+// Platform > Posts > Create
+Route::screen('posts/create', PostEditScreen::class)
+    ->name('platform.post.create')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.post.list')
+        ->push('Post Create'));
+
+// Platform > Posts > Create
+Route::screen('posts/{post}/edit', PostEditScreen::class)
+    ->name('platform.post.edit')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.post.list')
+        ->push('Post Edit'));

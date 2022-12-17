@@ -7,10 +7,12 @@ namespace App\Orchid\Screens\Post;
 use App\Models\Post;
 use App\Models\User;
 use App\Orchid\Layouts\Post\PostListLayout;
+use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 use Orchid\Screen\TD;
 use Orchid\Support\Facades\Layout;
+use Orchid\Support\Facades\Toast;
 
 class PostListScreen extends Screen
 {
@@ -36,7 +38,7 @@ class PostListScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Post list';
+        return __('Post List');
     }
 
     /**
@@ -46,7 +48,7 @@ class PostListScreen extends Screen
      */
     public function description(): ?string
     {
-        return 'All posts';
+        return __('All Posts');
     }
 
     /**
@@ -55,7 +57,7 @@ class PostListScreen extends Screen
     public function permission(): ?iterable
     {
         return [
-            // 'platform.systems.users',
+            'platform.posts',
         ];
     }
 
@@ -66,7 +68,11 @@ class PostListScreen extends Screen
      */
     public function commandBar(): iterable
     {
-        return [];
+        return [
+            Link::make(__('Add'))
+                ->icon('plus')
+                ->href(route('platform.post.create')),
+        ];
     }
 
     /**
@@ -79,5 +85,15 @@ class PostListScreen extends Screen
         return [
             PostListLayout::class,
         ];
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function remove(Request $request): void
+    {
+        Post::findOrFail($request->get('id'))->delete();
+
+        Toast::info(__('Post was removed'));
     }
 }
