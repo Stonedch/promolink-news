@@ -25,5 +25,12 @@
         {{$post->body}}
     </p>
 
+    <div class="pagination">
+        <a href="{{ route('news.index') }}" class="item">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span>{{ __('Back') }}</span>
+        </a>
+    </div>
+
 </section>
 @stop

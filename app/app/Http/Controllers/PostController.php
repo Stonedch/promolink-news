@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -11,10 +14,28 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $paginate = 5;
+        $search = $request->input('search');
+
+        if ($search) {
+            $posts = Post::where('is_draft', false)
+                ->where('is_publicated', true)
+                ->where('publicated_at', '<=', now())
+                ->where('title', 'LIKE', "%{$search}%")
+                ->orWhere('user_id', User::where('name', 'LIKE', "%{$search}%")->get('id')->toArray() ?: [])
+                ->paginate($paginate);
+        } else {
+            $posts = Post::where('is_draft', false)
+                ->where('is_publicated', true)
+                ->where('publicated_at', '<=', now())
+                ->paginate($paginate);
+        }
+
         return view('post.list', [
-            'posts' => Post::where('is_draft', false)->where('is_publicated', true)->where('publicated_at', '<=', now())->paginate(5),
+            'posts' => $posts,
+            'search' => $search,
         ]);
     }
 
