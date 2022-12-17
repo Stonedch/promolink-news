@@ -24,7 +24,7 @@ class CategoryListLayout extends Table
     public function columns(): array
     {
         return [
-            TD::make('id', '#')
+            TD::make('id', __('#'))
                 ->filter(TD::FILTER_NUMERIC)
                 ->sort()
                 ->defaultHidden()
