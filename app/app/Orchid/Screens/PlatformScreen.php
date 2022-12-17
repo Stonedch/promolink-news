@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens;
 
+use App\Models\Post;
+use App\Orchid\Layouts\Post\PostLastListLayout;
+use App\Orchid\Layouts\Post\PostListLayout;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout;
 
 class PlatformScreen extends Screen
 {
@@ -17,7 +19,9 @@ class PlatformScreen extends Screen
      */
     public function query(): iterable
     {
-        return [];
+        return [
+            'posts' => Post::filters()->where('is_draft', false)->where('is_publicated', true)->paginate(),
+        ];
     }
 
     /**
@@ -27,17 +31,7 @@ class PlatformScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Get Started';
-    }
-
-    /**
-     * Display header description.
-     *
-     * @return string|null
-     */
-    public function description(): ?string
-    {
-        return 'Welcome to your Orchid application.';
+        return __('Promolink News');
     }
 
     /**
@@ -48,16 +42,12 @@ class PlatformScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-            Link::make('Website')
-                ->href('http://orchid.software')
+            Link::make(__('Website'))
+                ->href('/')
                 ->icon('globe-alt'),
 
-            Link::make('Documentation')
-                ->href('https://orchid.software/en/docs')
-                ->icon('docs'),
-
-            Link::make('GitHub')
-                ->href('https://github.com/orchidsoftware/platform')
+            Link::make(__('GitHub'))
+                ->href('https://github.com/stonedch/')
                 ->icon('social-github'),
         ];
     }
@@ -70,7 +60,7 @@ class PlatformScreen extends Screen
     public function layout(): iterable
     {
         return [
-            Layout::view('platform::partials.welcome'),
+            PostLastListLayout::class,
         ];
     }
 }

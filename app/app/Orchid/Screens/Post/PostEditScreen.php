@@ -7,7 +7,6 @@ namespace App\Orchid\Screens\Post;
 use App\Models\Post;
 use App\Orchid\Layouts\Post\PostEditLayout;
 use Illuminate\Http\Request;
-use Orchid\Platform\Models\Role;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
@@ -41,7 +40,7 @@ class PostEditScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Manage posts';
+        return __('Manage posts');
     }
 
     /**

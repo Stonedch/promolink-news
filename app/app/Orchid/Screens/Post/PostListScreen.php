@@ -5,13 +5,10 @@ declare(strict_types=1);
 namespace App\Orchid\Screens\Post;
 
 use App\Models\Post;
-use App\Models\User;
 use App\Orchid\Layouts\Post\PostListLayout;
 use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
-use Orchid\Screen\TD;
-use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
 class PostListScreen extends Screen
@@ -26,7 +23,6 @@ class PostListScreen extends Screen
         return [
             'posts' => Post::filters()
                 ->defaultSort('id', 'desc')
-                ->filters()
                 ->paginate(),
         ];
     }
