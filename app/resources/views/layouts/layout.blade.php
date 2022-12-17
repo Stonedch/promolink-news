@@ -26,10 +26,9 @@
             </a>
             <div class="link-list">
                 @if (Auth::check())
-                    <a href="/platform/profile/">Профиль</a>
-                    <a href="/platform/logout/">Выйти</a>
+                    <a href="{{ route('platform.profile') }}">Профиль</a>
                 @else
-                    <a href="/platform/login/">Войти</a>
+                    <a href="{{ route('platform.login') }}">Войти</a>
                 @endif
             </div>
         </div>
