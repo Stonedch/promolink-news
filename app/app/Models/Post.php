@@ -53,4 +53,16 @@ class Post extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function user() {
+        return User::find($this->user_id);
+    }
+
+    public function date() {
+        return $this->publicated_at ? date('d.m.Y H:i', strtotime($this->publicated_at)) : null;
+    }
+
+    public function category() {
+        return Category::find($this->category_id);
+    }
 }

@@ -1,44 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.layout')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <title>Promolink News - List</title>
-</head>
-
-<body>
-    <main>
-        <header class="main-header">
-            <a href="/" class="logo-link" target="_self">Promolink News</a>
-            <a href="/platform/login/" class="authorization">Авторизация</a>
-        </header>
-
-        <div class="link-section">
-            @foreach ($categories as $category)
-                @if (count($category->posts))
-                    <section class="link-section bbc-section" data-order="0">
-                        <h2 class="col-header">{{$category->name}}</h2>
-                        <ol class="links-list links-list--bbc">
-                            @foreach ($category->posts as $post)
-                                <li>
-                                    <a href="/news/{{ $post->id }}" class="story-title">
-                                        {{ $post->title }}
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ol>
-                    </section>
-                @endif
-            @endforeach
-        </div>
-
-        <footer class="page-footer">
-            <a href="/" class="logo-link">Promolink News</a>
-        </footer>
-    </main>
-</body>
-
-</html>
+@section('content')
+    <section class="category-list container">
+        @foreach ($categories as $category)
+            @if (count($category->posts))
+                <div class="item">
+                    <h2>{{ __('Last News') }}</h2>
+                    <div class="post-list">
+                        @foreach ($category->posts as $post)
+                            <a href="/news/{{ $post->id }}" class="item">
+                                <h3>{{ $post->title }}</h3>
+                                <div class="info">
+                                    <div class="item">
+                                        <i class="fa-regular fa-folder"></i>
+                                        <span>{{ $post->category()->name }}</span>
+                                    </div>
+                                    <div class="item">
+                                        <i class="fa-solid fa-at"></i>
+                                        <span>{{ $post->user()->name }}</span>
+                                    </div>
+                                    <div class="item">
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <span>{{ $post->date() }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+        @endforeach
+    </section>
+@stop

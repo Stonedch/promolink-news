@@ -1,21 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.layout')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <title>Promolink News - {{ $post->title }}</title>
-</head>
+@section('content')
+<section class="post-detail container">
 
-<body>
-<header class="main-header">
-        <a href="#" class="logo-link" target="_self">Promolink News</a>
-        <a href="#" class="authorization"> Авторизация</a>
-    </header>
-    <h2><a href="/news/{{$post->id}}">{{$post->title}}</a></h2>
-    <p>{{$post->body}}</p>
-</body>
+    <div class="top">
+        <h2>{{$post->title}}</h2>
+        <div class="info">
+            <div class="item">
+                <i class="fa-regular fa-folder"></i>
+                <span>{{ $post->category()->name }}</span>
+            </div>
+            <div class="item">
+                <i class="fa-solid fa-at"></i>
+                <span>{{ $post->user()->name }}</span>
+            </div>
+            <div class="item">
+                <i class="fa-regular fa-calendar"></i>
+                <span>{{ $post->date() }}</span>
+            </div>
+        </div>
+    </div>
 
-</html>
+    <p class="body">
+        {{$post->body}}
+    </p>
+
+</section>
+@stop
