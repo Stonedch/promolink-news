@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Post;
-use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -16,7 +14,7 @@ class PostController extends Controller
     public function index()
     {
         return view('post.list', [
-            'categories' => Category::all(),
+            'posts' => Post::where('is_draft', false)->where('is_publicated', true)->where('publicated_at', '<=', now())->paginate(5),
         ]);
     }
 

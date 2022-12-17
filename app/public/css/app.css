@@ -158,3 +158,28 @@ main section h2 {
     padding-bottom: 0.75rem;
     border-bottom: dotted rgba(46, 46, 55, 0.5);
 }
+
+.pagination {
+    display: flex;
+    justify-content: end;
+    gap: 1rem
+}
+
+.pagination .item {
+    font-size: 12px;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    text-decoration: none;
+    color: #b2b6b9;
+    text-transform: uppercase;
+}
+
+.pagination .item:hover {
+    color: #fff;
+}
+
+.pagination .item i {
+    font-size: 10px;
+}
