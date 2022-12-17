@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 use App\Models\Post;
 
@@ -15,14 +15,26 @@ class PostsSeeder extends Seeder
      */
     public function run()
     {
-        Post::factory(20)->create();
+        $category_id = Category::factory()->create();
+
+        Post::factory(20)->create([
+            'category_id' => $category_id,
+        ]);
+
+        $category_id = Category::factory()->create();
+
         Post::factory(10)->create([
             'is_draft' => false,
             'is_publicated' => false,
+            'category_id' => $category_id,
         ]);
+
+        $category_id = Category::factory()->create();
+
         Post::factory(10)->create([
             'is_draft' => true,
             'is_publicated' => false,
+            'category_id' => $category_id,
         ]);
     }
 }

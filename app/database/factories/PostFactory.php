@@ -23,6 +23,7 @@ class PostFactory extends Factory
             'is_publicated' => true,
             'publicated_at' => now(),
             'user_id' => UserFactory::new(),
+            'category_id' => CategoryFactory::new(),
         ];
     }
 }
