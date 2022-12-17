@@ -18,8 +18,6 @@ class PlatformProvider extends OrchidServiceProvider
     public function boot(Dashboard $dashboard): void
     {
         parent::boot($dashboard);
-
-        // ...
     }
 
     /**
@@ -28,8 +26,13 @@ class PlatformProvider extends OrchidServiceProvider
     public function registerMainMenu(): array
     {
         return [
-            Menu::make('Posts')
-                ->title('Posts')
+            Menu::make(__('Categories'))
+                ->title(__('Posts'))
+                ->icon('folder')
+                ->permission('platform.posts')
+                ->route('platform.category.list'),
+
+            Menu::make(__('Posts'))
                 ->icon('feed')
                 ->permission('platform.posts')
                 ->route('platform.post.list'),

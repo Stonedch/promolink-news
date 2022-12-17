@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use App\Orchid\Layouts\Post\PostEditLayout;
+use App\Orchid\Screens\Category\CategoryEditScreen;
+use App\Orchid\Screens\Category\CategoryListScreen;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
 use App\Orchid\Screens\Examples\ExampleChartsScreen;
 use App\Orchid\Screens\Examples\ExampleFieldsAdvancedScreen;
@@ -85,37 +87,44 @@ Route::screen('roles', RoleListScreen::class)
         ->parent('platform.index')
         ->push(__('Roles'), route('platform.systems.roles')));
 
-// Example...
-Route::screen('example', ExampleScreen::class)
-    ->name('platform.example')
-    ->breadcrumbs(fn (Trail $trail) => $trail
-        ->parent('platform.index')
-        ->push('Example screen'));
-
-Route::screen('example-fields', ExampleFieldsScreen::class)->name('platform.example.fields');
-Route::screen('example-layouts', ExampleLayoutsScreen::class)->name('platform.example.layouts');
-Route::screen('example-charts', ExampleChartsScreen::class)->name('platform.example.charts');
-Route::screen('example-editors', ExampleTextEditorsScreen::class)->name('platform.example.editors');
-Route::screen('example-cards', ExampleCardsScreen::class)->name('platform.example.cards');
-Route::screen('example-advanced', ExampleFieldsAdvancedScreen::class)->name('platform.example.advanced');
-
 // Platform > Posts
 Route::screen('posts', PostListScreen::class)
     ->name('platform.post.list')
     ->breadcrumbs(fn (Trail $trail) => $trail
         ->parent('platform.index')
-        ->push('Post List'));
+        ->push(__('Post List')));
 
 // Platform > Posts > Create
 Route::screen('posts/create', PostEditScreen::class)
     ->name('platform.post.create')
     ->breadcrumbs(fn (Trail $trail) => $trail
         ->parent('platform.post.list')
-        ->push('Post Create'));
+        ->push(__('Post Create')));
 
 // Platform > Posts > Create
 Route::screen('posts/{post}/edit', PostEditScreen::class)
     ->name('platform.post.edit')
     ->breadcrumbs(fn (Trail $trail) => $trail
         ->parent('platform.post.list')
-        ->push('Post Edit'));
+        ->push(__('Post Edit')));
+
+// Platform > Categories
+Route::screen('categories', CategoryListScreen::class)
+    ->name('platform.category.list')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('Category List')));
+
+// Platform > Categories > Create
+Route::screen('categories/create', CategoryEditScreen::class)
+    ->name('platform.category.create')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.category.list')
+        ->push(__('Category Create')));
+
+// Platform > Posts > Create
+Route::screen('categories/{category}/edit', CategoryEditScreen::class)
+    ->name('platform.category.edit')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.category.list')
+        ->push(__('Category Edit')));
