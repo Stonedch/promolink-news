@@ -21,14 +21,16 @@ class IsAdminMiddleware
     {
         $permission = 'platform.systems.debugbar';
 
-        if ($request->user()->permissions[$permission]) {
-            \Debugbar::enable();
-            return $next($request);
-        } elseif (count($request->user()->roles)) {
-            foreach ($request->user()->roles as $role) {
-                if ($role->permissions[$permission]) {
-                    \Debugbar::enable();
-                    return $next($request);
+        if ($request->user()) {
+            if ($request->user()->permissions[$permission]) {
+                \Debugbar::enable();
+                return $next($request);
+            } elseif (count($request->user()->roles)) {
+                foreach ($request->user()->roles as $role) {
+                    if ($role->permissions[$permission]) {
+                        \Debugbar::enable();
+                        return $next($request);
+                    }
                 }
             }
         }
