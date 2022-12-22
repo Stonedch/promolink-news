@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use Orchid\Filters\Filterable;
 use Orchid\Screen\AsSource;
 
@@ -45,5 +46,13 @@ class Category extends Model
             ->where('is_draft', false)
             ->where('is_publicated', true)
             ->where('publicated_at', '<=', now());
+    }
+
+    protected static function boot() {
+        parent::boot();
+
+        static::creating(function (Category $category) {
+            $category->slug = Str::slug($category->name);
+        });
     }
 }

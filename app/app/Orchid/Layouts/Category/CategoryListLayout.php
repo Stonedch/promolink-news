@@ -35,6 +35,11 @@ class CategoryListLayout extends Table
                 ->sort()
                 ->width(200),
 
+            TD::make('slug', __('Slug'))
+                ->filter(TD::FILTER_TEXT)
+                ->sort()
+                ->width(200),
+
             TD::make('created_at', __('Created at'))
                 ->filter(TD::FILTER_DATE_RANGE)
                 ->defaultHidden()

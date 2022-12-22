@@ -15,11 +15,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, int $id)
+    public function show(Request $request, string $slug)
     {
         $paginate = 5;
         $search = $request->input('search');
-        $category = Category::findOrFail($id);
+        $category = Category::where('slug', $slug)->firstOrFail();
         $posts = $category->posts();
 
         if ($search) {

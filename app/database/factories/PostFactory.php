@@ -17,12 +17,8 @@ class PostFactory extends Factory
      */
     public function definition()
     {
-        $title = fake()->sentence(rand(5, 10), true);
-        $slug = Str::slug($title, '-');
-
         return [
-            'title' => $title,
-            'slug' => $slug,
+            'title' => fake()->sentence(rand(5, 10), true),
             'body' => fake()->paragraph(rand(20, 30)),
             'is_draft' => false,
             'is_publicated' => true,

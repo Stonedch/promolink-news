@@ -4,7 +4,7 @@
     <section class="category-list container">
         @foreach ($categories as $category)
             @if (count($category->posts()->get()))
-                <a href="{{ route('category.show', $category->id) }}">{{ $category->name }}</a>
+                <a href="{{ route('category.show', $category->slug) }}">{{ $category->name }}</a>
             @endif
         @endforeach
     </section>
