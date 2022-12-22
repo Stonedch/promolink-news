@@ -36,6 +36,10 @@ class PostListLayout extends Table
                 ->sort()
                 ->width(200),
 
+            TD::make('slug', 'Slug')
+                ->filter(TD::FILTER_TEXT)
+                ->sort(),
+
             TD::make('user_id', 'Author')
                 ->filter(TD::FILTER_TEXT)
                 ->sort()

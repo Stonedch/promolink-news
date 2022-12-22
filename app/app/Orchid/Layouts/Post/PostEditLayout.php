@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Orchid\Layouts\Post;
 
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Orchid\Screen\Field;
 use Orchid\Screen\Fields\CheckBox;
@@ -31,6 +32,11 @@ class PostEditLayout extends Rows
                 ->max(256)
                 ->required()
                 ->title(__('Title')),
+
+            Relation::make('post.category_id')
+                ->fromModel(Category::class, 'name')
+                ->required()
+                ->title(__('Category')),
 
             SimpleMDE::make('post.body')
                 ->required()

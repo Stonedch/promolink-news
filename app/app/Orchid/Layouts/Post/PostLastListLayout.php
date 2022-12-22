@@ -32,6 +32,10 @@ class PostLastListLayout extends Table
                 })
                 ->sort(),
 
+            TD::make('slug', 'Slug')
+                ->filter(TD::FILTER_TEXT)
+                ->sort(),
+
             TD::make('user_id', 'Author')
                 ->filter(TD::FILTER_TEXT)
                 ->sort()

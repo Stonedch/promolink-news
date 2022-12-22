@@ -23,7 +23,7 @@
                     <h2>{{ __('Empty') }}</h2>
                 @else
                     @foreach ($posts as $post)
-                        <a href="{{ route('news.show', $post->id) }}" class="item">
+                        <a href="{{ route('news.show', $post->slug) }}" class="item">
                             <h3>{{ $post->title }}</h3>
                             <div class="info">
                                 <div class="item">

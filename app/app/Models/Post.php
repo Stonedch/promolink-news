@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use Orchid\Filters\Filterable;
 use Orchid\Screen\AsSource;
 
@@ -17,7 +18,8 @@ class Post extends Model
         'user_id',
         'is_draft',
         'is_publicated',
-        'publicated_at'
+        'publicated_at',
+        'category_id',
     ];
 
     protected $hidden = [
@@ -64,5 +66,13 @@ class Post extends Model
 
     public function category() {
         return Category::find($this->category_id);
+    }
+
+    protected static function boot() {
+        parent::boot();
+
+        static::creating(function (Post $post) {
+            $post->slug = Str::slug($post->title);
+        });
     }
 }
