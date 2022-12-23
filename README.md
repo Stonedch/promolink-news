@@ -16,7 +16,7 @@ Simple blog web-app with Laravel, Orchid, PostgreSQL
 
 ```console
 $ cp .env.example .env (and configurate)
-$ cp ./app/.env.example. env (and configurate)
+$ cp ./app/.env.example ./app/.env (and configurate)
 $ docker-compose up -d --build
 $ docker-compose exec laravel composer install
 $ docker-compose exec laravel php artisan key:generate --ansi
