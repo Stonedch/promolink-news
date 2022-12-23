@@ -55,6 +55,12 @@ class UserListLayout extends Table
                 ->render(fn (User $user) => DropDown::make()
                     ->icon('options-vertical')
                     ->list([
+                        Button::make(__('Authorize'))
+                            ->icon('login')
+                            ->confirm('You will be authorized for this user!')
+                            ->method('auth', [
+                                'id' => $user->id,
+                            ]),
 
                         Link::make(__('Edit'))
                             ->route('platform.systems.users.edit', $user->id)

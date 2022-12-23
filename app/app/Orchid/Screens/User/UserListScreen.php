@@ -9,6 +9,7 @@ use App\Orchid\Layouts\User\UserFiltersLayout;
 use App\Orchid\Layouts\User\UserListLayout;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
@@ -130,5 +131,18 @@ class UserListScreen extends Screen
         User::findOrFail($request->get('id'))->delete();
 
         Toast::info(__('User was removed'));
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function auth(Request $request): void
+    {
+        dd($request);
+        $user = User::findOrFail($request->get('id'));
+
+        Auth::login($user);
+
+        Toast::info(__('The current user has been changed'));
     }
 }
