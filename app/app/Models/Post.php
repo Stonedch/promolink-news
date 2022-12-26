@@ -23,10 +23,7 @@ class Post extends Model
     ];
 
     protected $hidden = [
-        'id',
         'user_id',
-        'is_publicated',
-        'publicated_at',
         'created_at',
         'updated_at',
         'deleted_at',
