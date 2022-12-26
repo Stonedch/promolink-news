@@ -8,8 +8,9 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        return $request->user();
         return Category::all();
     }
 

@@ -18,6 +18,8 @@ class PostController extends Controller
         $post = new Post;
 
         $post->fill($request->all());
+        $post->user_id = $request->user()->id;
+        $post->is_publicated = false;
         $post->save();
 
         return $post;
@@ -32,14 +34,22 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        $post->fill($request->all());
-        $post->save();
+        if ($post->user_id == $request->user()->id) {
+            $post->fill($request->all());
+            $post->save();
 
-        return $post;
+            return $post;
+        }
+
+        return response(403, 'access denied');
     }
 
     public function destroy($id)
     {
-        Post::findOrFail($id)->delete();
+        if ($post->user_id == $request->user()->id) {
+            return response(200, Post::findOrFail($id)->delete());
+        }
+
+        return response(403, 'access denied');
     }
 }
